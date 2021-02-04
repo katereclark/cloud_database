@@ -35,7 +35,7 @@ def display_books(db):
 
 # Selects a property of the user-specified book and modifies that property.
 def edit_book(db, title):
-    component = None
+    property = None
     print()
     print(f'Which part of the "{title}" entry would you like to edit?')
     print("1) Title")
@@ -44,29 +44,29 @@ def edit_book(db, title):
     print("4) Number in series")
     print("5) Checked out")
     print("6) Quit")
-    component = input("> ")
+    property = input("> ")
     print()
     
     entry_ref = db.collection("books").document(title)
 
-    while component != "6":
-        if component == "1":
+    while property != "6":
+        if property == "1":
             title = input("What is the new title? ")
             entry_ref.update({"title": title})
             break
-        elif component == "2":
+        elif property == "2":
             author = input("What is the new first and last names of the author? ")
             entry_ref.update({"author": author})
             break
-        elif component == "3":
+        elif property == "3":
             series_name = input("What is the new series name? ")
             entry_ref.update({"series_name": series_name})
             break
-        elif component == "4":
+        elif property == "4":
             num_in_series = input("What is the new number in the book series (1, 2, 3...)? ")
             entry_ref.update({"num_in_series": num_in_series})
             break
-        elif component == "5":
+        elif property == "5":
             checked_out = input("Is the book checked out (y/n)? ")
             entry_ref.update({"checked_out": checked_out})
             break
