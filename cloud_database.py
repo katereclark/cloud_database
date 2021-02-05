@@ -1,13 +1,19 @@
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
-import os
 
 # Sets up the firestore cloud database to be ready for use.
 def initialize_firestore():
 
     cred = credentials.Certificate(r"C:\Users\Kate\Documents\Folders\CSE 310\cloud_database\cosmere-database-firebase-adminsdk-ekqyh-164672a1d3.json")
     firebase_admin.initialize_app(cred)
+
+#     service cloud.firestore {  match /databases/{database}/documents {    match /books/{book} {
+#       allow read: if <condition>;
+#       allow write: if <condition>;
+#     }
+#   }
+# }
 
     db = firestore.client()
     return db
@@ -82,34 +88,18 @@ def display_books_by_series(db, series_name):
         books = result.to_dict()
         print("{:<25}  {:<20}  {:<25}  {:<20}  {:<20}".format(books["title"], books["author"], books["series_name"], books["num_in_series"], books["checked_out"]))
 
-# def on_snapshot(doc_snapshot, changes, read_time):
-#     # documents_list = []
-#     # for doc in doc_snapshot:
-#     #     documents_list.append(doc.id)
-#     # print(f"Data changes made to: {documents_list}")
-
-#     print("Current book status: ")
-#     for change in changes:
-#         if change.type.name == 'ADDED':
-#             print(f'New book: {change.document.id}')
-#         if change.type.name == 'MODIFIED':
-#             print(f'Modified book: {change.document.id}')
-#         elif change.type.name == 'REMOVED':
-#             print(f'Removed book: {change.document.id}')
-
 def main():
     db = initialize_firestore()
 
     choice = None
-    while choice != "7":
+    while choice != "6":
         print()
         print("1) Add Book to Library")
         print("2) Remove Book from Library")
         print("3) Edit Book in Library")
         print("4) Display Books in Series")
         print("5) Display Books in Library")
-        print("6) Display Book Changes")
-        print("7) Quit")
+        print("6) Quit")
         choice = input("> ")
         print()
 
@@ -134,10 +124,6 @@ def main():
             display_books_by_series(db, series_name)
         elif choice == "5":
             display_books(db)
-        # elif choice == "6":
-        #     col_query = db.collection("books")
-        #     query_watch = col_query.on_snapshot(on_snapshot)
-        #     continue
         else:
             break
 
