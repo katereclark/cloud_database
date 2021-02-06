@@ -8,8 +8,7 @@ The software also asks the user to choose whether to add a book, remove a book, 
 
 My purpose for writing this cloud database software is to create and maintain a cloud database that imitates a library database and stores books and their individual properties.
 
-{4-5 minute - software running, a walkthrough of the code, and a view of the cloud database.}
-Here is a demo of my software: [Software Demo Video](http://youtube.link.goes.here)
+Here is a demo of my software: [Software Demo Video](https://youtu.be/AML4q-Docqk)
 
 # Cloud Database
 
@@ -32,3 +31,4 @@ I am using the Firestore cloud database hosted by Google Firebase. It is a NoSQL
 * Use JavaScript to present the queries and data in a more asthetic way.
 * Add a component that will create a notification if any of the data is changed.
 * Create an index to order the data by author as well.
+* Make a password also be required to log in.
